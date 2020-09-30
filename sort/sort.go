@@ -106,5 +106,4 @@ func searchFor(list []int, p int) bool { // {{{
 			left = mid + 1
 		}
 	}
-
 } // }}}

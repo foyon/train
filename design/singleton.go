@@ -1,6 +1,6 @@
 /**
 * @File:          singleton.go
-* @Aim:           单例模式
+* @Aim:           单例模式,防止类多次实例话
 * @Author:        foyon
 * @Created Time:  2020-09-19
  */

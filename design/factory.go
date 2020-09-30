@@ -1,6 +1,7 @@
 /**
 * @File:          factory.go
 * @Aim:           工厂设计模式
+*                 父类提供创建对象方法，允许子类自定义标准接口
 * @Author:        foyon
 * @Created Time:  2020-09-19
  */
