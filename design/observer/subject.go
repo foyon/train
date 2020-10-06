@@ -61,7 +61,7 @@ func (i *item) notifyAll() {
 }
 
 //切片中移除注销的观察者
-func removerFromSlice(observerList []observer, removerObserver observer) []observer { // {{{
+func removeFromSlice(observerList []observer, removerObserver observer) []observer { // {{{
 	observerListLen := len(observerList)
 	for i, observer := range observerList {
 		if observer.getId() == removerObserver.getId() {

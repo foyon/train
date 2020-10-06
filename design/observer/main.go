@@ -7,9 +7,10 @@
 package main
 
 import (
-	_ "fmt"
+//"fmt"
 )
 
+//exec command: go run *.go
 func main() {
 	shirtItem := newItem("foyon shirt")
 	ob1 := &Customer{
