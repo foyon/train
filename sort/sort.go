@@ -22,6 +22,9 @@ func main() {
 	list3 := bubble_sort(list)
 	fmt.Println(list3)
 
+	list4 := quick_sort(list, 0, 6)
+	fmt.Println(list4)
+
 }
 
 /*插入排序
@@ -59,6 +62,43 @@ func bubble_sort(list []int) []int { // {{{
 				list[j], list[j+1] = list[j+1], list[j]
 			}
 		}
+	}
+	return list
+} // }}}
+
+/*t nlogn space: logn*/
+//取数组中最后一个值，比其大的放右边，比其小大放左边，
+//直到每组分治为1的时候停止
+//从左++，右--，直到交叉，比较与mark大小，选择交换位置
+func quick_sort(list []int, left int, right int) []int { // {{{
+	partIndex := part(list, left, right)
+	quick_sort(list, left, partIndex-1)
+	quick_sort(list, partIndex+1, right)
+	return list
+} // }}}
+
+func part(list []int, left int, right int) int { // {{{
+	//取数组最后一个值作为比较对象
+	mark := list[right]
+	smallIndex := left
+	bigIndex := right - 1
+
+	for {
+		for smallIndex < right && list[smallIndex] <= mark {
+			smallIndex++
+		}
+
+		for bigIndex > left && list[bigIndex] >= mark {
+			bigIndex--
+		}
+		swap(list, smallIndex, bigIndex)
+	}
+	return smallIndex
+} // }}}
+
+func swap(list []int, left int, right int) []int { // {{{
+	if list[left] > list[right] {
+		list[left], list[right] = list[right], list[left]
 	}
 	return list
 } // }}}
