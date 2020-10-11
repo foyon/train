@@ -24,11 +24,10 @@ func main() {
 
 	list4 := quick_sort(list, 0, 6)
 	fmt.Println(list4)
-
 }
 
 /*插入排序
-n^2 时间复杂度
+time: O(N^2) | space: O(1)
 从第二个元素开始，每个元素和前面的每一个元素对比，找到合适位置插入
 */
 func insert_sort(list []int) []int { // {{{
@@ -52,7 +51,8 @@ func insert_sort(list []int) []int { // {{{
 	return list
 } // }}}
 
-/*冒泡排序, TOP N操作，只排前N次即可*/
+//冒泡排序, TOP N操作，只排前N次即可
+//time: O(N^2) | space: O(1)
 func bubble_sort(list []int) []int { // {{{
 	lenth := len(list)
 
@@ -63,11 +63,12 @@ func bubble_sort(list []int) []int { // {{{
 			}
 		}
 	}
+
 	return list
 } // }}}
 
-/*t nlogn space: logn*/
-//取数组中最后一个值，比其大的放右边，比其小大放左边，
+/*time: nlogn  | space: logn*/
+//取数组中最后一个值，比其大的放右边，比其小的放左边，
 //直到每组分治为1的时候停止
 //从左++，右--，直到交叉，比较与mark大小，选择交换位置
 func quick_sort(list []int, left int, right int) []int { // {{{
@@ -93,6 +94,7 @@ func part(list []int, left int, right int) int { // {{{
 		}
 		swap(list, smallIndex, bigIndex)
 	}
+
 	return smallIndex
 } // }}}
 
@@ -100,8 +102,19 @@ func swap(list []int, left int, right int) []int { // {{{
 	if list[left] > list[right] {
 		list[left], list[right] = list[right], list[left]
 	}
+
 	return list
 } // }}}
+
+//归并排序 1、分治 2排序 3 归并（将左子++，mark，右子++ 进行循环顺序写入）
+func merge_sort(list []int, start int, end int) {
+	mid := int(math.Ceil((start + end) / 2))
+	merge_sort(list, start, mid)
+	merge_sort(list, mid+1, end)
+	merge(list, start, mid, end)
+}
+
+func merge()
 
 /*2分查找，取中间值，偏移左右索引--递归版*/
 func search(list []int, p int, left int, right int) bool { // {{{
