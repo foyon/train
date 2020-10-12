@@ -14,16 +14,21 @@ import (
 func main() {
 	var list = []int{1, 3, 2, 4, 7, 9, 10}
 	list2 := insert_sort(list)
+	fmt.Println("insert_sort:", list2)
 	res := search(list2, -1, 0, len(list2)-1)
 	fmt.Println(res)
 	res2 := searchFor(list2, 2)
 	fmt.Println(res2)
 
 	list3 := bubble_sort(list)
-	fmt.Println(list3)
+	fmt.Println("bubble_sort:", list3)
 
-	list4 := quick_sort(list, 0, 6)
-	fmt.Println(list4)
+	//list4 := quick_sort(list, 0, 6)
+	//fmt.Println("quick_sort:", list4)
+
+	//list5 := merge_sort(list, 0, 6)
+	//fmt.Println("merge_sort:", list5)
+
 }
 
 /*插入排序
@@ -107,14 +112,59 @@ func swap(list []int, left int, right int) []int { // {{{
 } // }}}
 
 //归并排序 1、分治 2排序 3 归并（将左子++，mark，右子++ 进行循环顺序写入）
-func merge_sort(list []int, start int, end int) {
-	mid := int(math.Ceil((start + end) / 2))
-	merge_sort(list, start, mid)
-	merge_sort(list, mid+1, end)
-	merge(list, start, mid, end)
-}
+func merge_sort(list []int, start int, end int) []int { // {{{
+	if len(list) < 2 {
+		return list
+	}
 
-func merge()
+	mid := (start + end) / 2
+	left := merge_sort(list, start, mid)
+	right := merge_sort(list, mid+1, end)
+	res := merge(left, right, start, mid, end)
+	return res
+} // }}}
+
+func merge(left []int, right []int, start int, mid int, end int) []int { // {{{
+	list := make([]int, 0)
+	leftStart := start
+	rightStart := mid + 1
+
+	for {
+		if leftStart <= mid || rightStart <= end {
+			if left[leftStart] <= right[rightStart] {
+				//list[start] = left[leftStart]
+				list = append(list, left[leftStart])
+				//一旦被选中填补，向后移位
+				leftStart++
+			} else {
+				//list[start] = right[rightStart]
+				list = append(list, right[rightStart])
+				rightStart++
+			}
+			start++
+		}
+	}
+	//左子没到尾部需要填充进去
+	if leftStart <= mid {
+		for {
+			if leftStart <= mid {
+				list = append(list, left[leftStart])
+				start++
+				leftStart++
+			}
+		}
+	} else {
+		for {
+			if rightStart <= end {
+				list = append(list, right[rightStart])
+				start++
+				rightStart++
+			}
+		}
+	}
+
+	return list
+} // }}}
 
 /*2分查找，取中间值，偏移左右索引--递归版*/
 func search(list []int, p int, left int, right int) bool { // {{{
