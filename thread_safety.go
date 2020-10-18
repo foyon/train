@@ -71,18 +71,18 @@ func demoTreadByChannel() { // {{{
 	//利用golang channel buffer特性实现goroutine池
 	job := []string{"a", "b", "c", "d"}
 	//work := make(chan struct{}, 100)
-	work := make(chan string, 100)
+	work := make(chan struct{}, 100)
 	wg := sync.WaitGroup{}
 
-	for _, v := range job {
+	for _, str := range job {
 		wg.Add(1)
-		work <- v
-		go func() {
+		work <- struct{}{}
+		go func(str string) {
 			defer wg.Done()
-			jobw := <-work
+			<-work
 			time.Sleep(5 * time.Second)
-			fmt.Printf("%v", jobw)
-		}()
+			fmt.Printf("%v", str)
+		}(str)
 	}
 
 	//放这里goroutine才能并行执行

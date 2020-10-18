@@ -1,6 +1,6 @@
 /**
 * @File:          gd.go
-* @Aim:           一道面试题，给定一个字符串按空格切割，用goroutine 并行处理
+* @Aim:           给定一个字符串按空格切割，用goroutine 并行处理
 				  典型并行处理，main进程汇总经典案例，实际项目开发运用居多
 * @Author:        foyon
 * @Created Time:  2020-10-12
