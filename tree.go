@@ -20,11 +20,27 @@ import (
 	"fmt"
 )
 
+type TreeOpt interface {
+	createNode(id int) *Tree
+	delNode()
+}
+
 type Tree struct {
 	Id    int
 	Name  string
 	Pid   int
-	Child []Tree
+	Left  *Tree
+	Right *Tree
+}
+
+func (t *Tree) createNode(id int) *Tree {
+	t.Id = id
+	return t
+}
+
+func (t *Tree) delNode() {
+
+	return
 }
 
 type param struct {
@@ -54,12 +70,8 @@ func addNode(root *Tree, p *param) {
 	if p.Pid == 0 {
 		root.Child = append(root.Child, tmpNode)
 	} else {
-		//childNodeTmp :=
-		for _, child := range root.Child {
-			if child.Id == p.Pid {
-
-			}
-
+		tmpNode := root
+		for {
 		}
 
 	}
