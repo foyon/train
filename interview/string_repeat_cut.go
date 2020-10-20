@@ -23,7 +23,7 @@ func main() { // {{{
 
 func cut(str string) string { // {{{
 
-	if len(str) < 3 {
+	if len(str) < 4 {
 		return str
 	}
 
