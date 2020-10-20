@@ -12,8 +12,9 @@ type ListNode struct {
 func main() {
 	head := buildList()
 	reverseHead := reverseList(head)
-	fmt.Printf("%+v", reverseHead)
-	fmt.Printf("%+v", reverseHead.Next)
+	fmt.Printf("%+v\n", reverseHead)
+	fmt.Printf("%+v\n", reverseHead.Next)
+	printList(reverseHead)
 }
 
 func buildList() *ListNode { // {{{
@@ -43,4 +44,11 @@ func reverseList(head *ListNode) *ListNode { // {{{
 	}
 
 	return pre
+} // }}}
+
+func printList(head *ListNode) { // {{{
+	for head != nil {
+		fmt.Printf("%d\n", head.Val)
+		head = head.Next
+	}
 } // }}}
