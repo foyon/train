@@ -26,9 +26,7 @@ type TreeOpt interface {
 }
 
 type Tree struct {
-	Id    int
-	Name  string
-	Pid   int
+	Val   int
 	Left  *Tree
 	Right *Tree
 }
@@ -58,6 +56,56 @@ func createRootNode() (root *Tree) {
 	root = &Tree{}
 	return
 }
+
+func getNode(root *Tree, val int) *Tree { // {{{
+	curNode := root
+	for {
+		if curNode != nil && curNode.Val != val {
+			if val > curNode.Val {
+				curNode = curNode.Right
+			} else {
+				curNode = curNode.Left
+			}
+		}
+	}
+
+	if curNode == nil {
+		return nil
+	} else {
+		return curNode
+	}
+} // }}}
+
+func addNode(root *Tree, val int) { // {{{
+	if root == nil {
+		root := &Tree{
+			Val: 0,
+		}
+	}
+	curNode := root
+	var parentNode *Tree
+
+	for {
+		parentNode = curNode
+		if val < parentNode.Val {
+			curNode = parentNode.Left
+			if curNode == nil {
+				parentNode.Left = &Tree{
+					Val: val,
+				}
+			}
+		} else if val > parentNode.Val {
+			curNode = parentNode.Right
+			if curNode == nil {
+				parentNode.Right = &Tree{
+					Val: val,
+				}
+			}
+		} else {
+			return
+		}
+	}
+} // }}}
 
 func addNode(root *Tree, p *param) {
 
