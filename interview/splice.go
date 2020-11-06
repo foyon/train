@@ -11,7 +11,8 @@ import (
 )
 
 func main() {
-	testSlice()
+	//testSlice()
+	test2()
 }
 
 func testSlice() { // {{{
@@ -26,3 +27,17 @@ func testSlice() { // {{{
 	fmt.Println("----------")
 	fmt.Println(s2[0])
 } // }}}
+
+func test2() {
+
+	s1 := [][]int{}
+	//var s2 [][]int
+	//s3 := make([][]int{}, 0)
+
+	s1 = append(s1, []int{10, 20})
+	//s2[0] = append(s2[0], 20)
+
+	fmt.Printf("%+v", s1)
+	//fmt.Printf("%+v", s2)
+
+}
