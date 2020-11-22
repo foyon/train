@@ -16,25 +16,30 @@ func main() {
 	errorTran()
 
 	//参数传递保证正确
-	corretTran()
+	//corretTran()
 }
 
 func errorTran() { // {{{
 	wg := sync.WaitGroup{}
-	wg.Add(10)
+	wg.Add(100)
+	//输出错误，变量作用域问题
+	//r := 0
 
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 100; i++ {
 		//进行一次拷贝即可
-		//i := i
+		//r = i
+
+		//此种方式可以
+		i := i
 		go func() {
 			defer wg.Done()
-			fmt.Printf("%d\n", i)
+			fmt.Printf("%d\n", r)
 		}()
 	}
 	wg.Wait()
 } // }}}
 
-//通过参数的方式传入
+//通过参数的方式传入,输出乱序
 func corretTran() { // {{{
 	wg := sync.WaitGroup{}
 	wg.Add(10)

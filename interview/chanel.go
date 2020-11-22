@@ -6,6 +6,8 @@ import (
 	"sync"
 )
 
+var t map[string]interface{}
+
 func main() {
 	//runtime.GOMAXPROCS(1)
 	fmt.Println("vim-go")
