@@ -1,0 +1,16 @@
+version: '2'
+
+networks:
+  basic:
+
+services:
+
+  hellodocker:
+    container_name: hellodocker 
+    image: hellodocker 
+    ports:
+      - "8099:80"
+    volumes:
+      - ./app/go/hellodocker:/go/src/app:rw
+    networks:
+      - basic

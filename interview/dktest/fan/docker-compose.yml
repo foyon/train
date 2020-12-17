@@ -1,0 +1,16 @@
+version: '2'
+
+networks:
+  basic:
+
+services:
+
+  fan:
+    container_name: fan 
+    image: dktest  
+    ports:
+      - "8099:80"
+    volumes:
+      - ./app:/go/src/app:rw
+    networks:
+      - basic
