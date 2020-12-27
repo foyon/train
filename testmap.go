@@ -7,8 +7,8 @@ import (
 )
 
 func main() {
-	smap := sync.Map{}
-	wg := sync.WaitGroup{}
+	smap := &sync.Map{}
+	wg := &sync.WaitGroup{}
 
 	smap.Store("age", 10)
 
@@ -63,11 +63,11 @@ func main() {
 	wg.Wait()
 }
 
-func set(s sync.Map, i int) {
+func set(s *sync.Map, i int) {
 	s.Store("one", i)
 }
 
-func get(s sync.Map) {
+func get(s *sync.Map) {
 	v, _ := s.Load("one")
 	fmt.Printf("%d", v)
 }
