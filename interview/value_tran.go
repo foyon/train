@@ -11,12 +11,25 @@ import (
 	"sync"
 )
 
+type Test struct {
+	Name string
+	Age  int
+}
+
 func main() {
 	//输出 10居多，还有些其他的
-	errorTran()
-
+	//errorTran()
+	var t *Test
+	t = new(Test)
+	pointTran(t)
+	fmt.Printf("%+v", t)
 	//参数传递保证正确
 	//corretTran()
+}
+
+func pointTran(t *Test) {
+	t.Name = "fan"
+	t.Age = 28
 }
 
 func errorTran() { // {{{
@@ -33,7 +46,7 @@ func errorTran() { // {{{
 		i := i
 		go func() {
 			defer wg.Done()
-			fmt.Printf("%d\n", r)
+			fmt.Printf("%d\n", i)
 		}()
 	}
 	wg.Wait()

@@ -8,6 +8,17 @@ func main1() {
 		x = "default"
 	}
 	fmt.Println(x)
+	fan(1, 2)
+	test3("test", "fan")
+
+}
+
+func test3(s string, s2 string) {
+
+}
+
+func fan(i int, i2 int) {
+
 }
 
 const (

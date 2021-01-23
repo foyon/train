@@ -53,7 +53,7 @@ func GetModel3() *Singeton {
 		model = &Singeton{}
 	})
 
-	fmt.Printf("%+v", model)
+	//fmt.Printf("%+v", model)
 	return model
 }
 

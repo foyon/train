@@ -45,9 +45,12 @@ Loop:
 			break Loop
 		case <-finishChan:
 			break Loop
-			//超时限制
-		case <-time.After(100000 * time.Millisecond):
-			break Loop
+		//超时限制
+		case <-time.After(3 * time.Millisecond):
+			fmt.Println("echo timeout")
+			//break Loop
+			//return
+			break
 		}
 	}
 }

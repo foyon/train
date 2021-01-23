@@ -33,7 +33,7 @@ func main() {
 	}
 	m = append(m, t)
 	m = append(m, t)
-	fmt.Printf("%+v", m)
+	fmt.Printf("%+v", count(m))
 
 	return
 	mark := 151333
